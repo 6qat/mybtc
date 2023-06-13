@@ -1,0 +1,46 @@
+# Install this in /etc/systemd/system/
+# See below for more details and options
+# https://raw.githubusercontent.com-/bitcoin/bitcoin/76deb30550b2492f9c8d9f0302da32025166e0c5/contrib/init/bitcoind.service
+# Then run following to always start:
+# systemctl enable bitcoind
+#
+# and the following to start immediately:
+# systemctl start bitcoind
+
+[Unit]
+Description=Bitcoin daemon
+After=network.target
+
+[Service]
+ExecStart=/home/bitcoin/mybtc/bitcoind-start.sh
+
+# Process management
+####################
+
+Type=forking
+PIDFile=/mnt/blockchain/bitcoind.pid
+Restart=on-failure
+
+# Directory creation and permissions
+####################################
+
+# Run as bitcoin:bitcoin or <youruser>
+User=bitcoin
+Group=bitcoin
+
+# Hardening measures
+####################
+
+# Provide a private /tmp and /var/tmp.
+PrivateTmp=true
+
+# Use a new /dev namespace only populated with API pseudo devices
+# such as /dev/null, /dev/zero and /dev/random.
+PrivateDevices=true
+
+# Deny the creation of writable and executable memory mappings.
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target
+
