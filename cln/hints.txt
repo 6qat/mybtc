@@ -1,0 +1,13 @@
+-datadir and -conf
+
+docker build -t 6qat/btc:24.0.1 .
+
+========================================================
+https://github.com/ElementsProject/lightning/blob/master/doc/FAQ.md
+
+lightningd --plugin=/path/to/plugin1 --plugin=path/to/plugin2
+
+lightningd --bitcoin-datadir /mnt/blockchain/
+
+lightning-cli plugin start $PWD/plugins/helpme/helpme.py
+
