@@ -1,0 +1,44 @@
+[Unit]
+Description=Core Lightning daemon
+After=bitcoind.service
+Wants=bitcoind.service
+
+[Service]
+ExecStart=/home/bitcoin/mybtc/cln/lightningd-start.sh
+#ExecStart=/opt/cln/bin/lightningd --daemon --network=bitcoin --bitcoin-datadir /mnt/blockchain/btc-data/ --log-level debug --log-file=/mnt/blockchain/cln-data/debug.log --pid-file=/mnt/blockchain/cln-data/lightningd.pid
+ExecReload=/bin/kill -HUP $MAINPID
+Environment="PATH=/home/bitcoin/.local/bin:/opt/bitcoin/bin:/opt/cln/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+
+# Process management
+####################
+
+Type=forking
+#Type=simple
+#Type=notify
+PIDFile=/mnt/blockchain/cln-data/lightningd.pid
+Restart=on-failure
+KillMode=process
+
+# Directory creation and permissions
+####################################
+
+# Run as bitcoin:bitcoin or <youruser>
+User=bitcoin
+Group=bitcoin
+
+# Hardening measures
+####################
+
+# Provide a private /tmp and /var/tmp.
+#PrivateTmp=true
+
+# Use a new /dev namespace only populated with API pseudo devices
+# such as /dev/null, /dev/zero and /dev/random.
+#PrivateDevices=true
+
+# Deny the creation of writable and executable memory mappings.
+#MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target
+
