@@ -12,13 +12,13 @@ Description=Bitcoin daemon
 After=network.target
 
 [Service]
-ExecStart=/home/bitcoin/mybtc/bitcoind-start.sh
+ExecStart=/home/bitcoin/mybtc/bitcoind/bitcoind-start.sh
 
 # Process management
 ####################
 
 Type=forking
-PIDFile=/mnt/blockchain/bitcoind.pid
+PIDFile=/mnt/blockchain/btc-data/bitcoind.pid
 Restart=on-failure
 
 # Directory creation and permissions

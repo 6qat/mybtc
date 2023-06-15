@@ -24,7 +24,7 @@ sleep 2
 
 echo "Starting bitcoind..."
 
-/opt/bitcoin/bin/bitcoind --daemon --server -pid=/mnt/blockchain/bitcoind.pid -datadir=/mnt/blockchain/ -conf=/mnt/blockchain/bitcoin.conf #-reindex 
+/opt/bitcoin/bin/bitcoind --daemon --server -pid=/mnt/blockchain/btc-data/bitcoind.pid -datadir=/mnt/blockchain/btc-data/ -conf=/mnt/blockchain/btc-data/bitcoin.conf #-reindex 
 
 echo "Done!"
 
