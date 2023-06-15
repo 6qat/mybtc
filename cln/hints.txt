@@ -13,7 +13,7 @@ lightning-cli plugin start $PWD/plugins/helpme/helpme.py
 
 pip3 install --user -r plugins/helpme/requirements.txt
 
-lightningd --network=bitcoin --bitcoin-datadir /mnt/blockchain/ --log-level debug
+lightningd --network=bitcoin --bitcoin-datadir /mnt/blockchain/btc-data/ --log-level debug
 
 curl -k https://172.17.87.201:9737/rpc -d '{"method": "listsendpays"}' -H 'X-Access: foda' -H 'Range: payments=0-99'
 curl -k https://10.8.0.2:9737/rpc -d '{"method": "getinfo"}' -H 'X-Access: foda'
