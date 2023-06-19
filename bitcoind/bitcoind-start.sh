@@ -24,7 +24,7 @@ sleep 2
 
 echo "Starting bitcoind..."
 
-/opt/bitcoin/bin/bitcoind --daemon --server -pid=/mnt/blockchain/btc-data/bitcoind.pid -datadir=/mnt/blockchain/btc-data/ -conf=/mnt/blockchain/btc-data/bitcoin.conf #-reindex 
+/opt/bitcoin/bin/bitcoind --daemon --server -port=8333 -pid=/mnt/blockchain/btc-data/bitcoind.pid -datadir=/mnt/blockchain/btc-data/ -conf=/mnt/blockchain/btc-data/bitcoin.conf #-connect=10.8.0.3:8333 -connect=54.39.22.116:8333  -connect=187.55.40.86:8333 -connect=179.235.204.165:8333 -connect=186.218.58.150:8333
 
 echo "Done!"
 

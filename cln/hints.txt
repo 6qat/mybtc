@@ -18,7 +18,11 @@ lightningd --network=bitcoin --bitcoin-datadir /mnt/blockchain/btc-data/ --log-l
 curl -k https://172.17.87.201:9737/rpc -d '{"method": "listsendpays"}' -H 'X-Access: foda' -H 'Range: payments=0-99'
 curl -k https://10.8.0.2:9737/rpc -d '{"method": "getinfo"}' -H 'X-Access: foda'
 
-root@lnd:~# sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 9737 -j DNAT --to-destination 10.8.0.2
-root@lnd:~# sudo iptables -A FORWARD -i eth0 -o eth1 -p tcp --syn --dport 9737 -m conntrack --ctstate NEW -j ACCEPT
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 9737 -j DNAT --to-destination 10.8.0.2
+iptables -A FORWARD -i eth0 -o wg0 -p tcp --syn --dport 9737 -m conntrack --ctstate NEW -j ACCEPT
 
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 8333 -j DNAT --to-destination 10.8.0.2
+iptables -A FORWARD -i eth0 -o wg0 -p tcp --syn --dport 8333 -m conntrack --ctstate NEW -j ACCEPT
 
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 8332 -j DNAT --to-destination 10.8.0.2
+iptables -A FORWARD -i eth0 -o wg0 -p tcp --syn --dport 8332 -m conntrack --ctstate NEW -j ACCEPT
