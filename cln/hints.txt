@@ -26,3 +26,9 @@ iptables -A FORWARD -i eth0 -o wg0 -p tcp --syn --dport 8333 -m conntrack --ctst
 
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 8332 -j DNAT --to-destination 10.8.0.2
 iptables -A FORWARD -i eth0 -o wg0 -p tcp --syn --dport 8332 -m conntrack --ctstate NEW -j ACCEPT
+
+Save iptables rules: 
+/sbin/iptables-save > /etc/iptables/rules.v4
+/sbin/iptables-restore < /etc/iptables/rules.v4
+
+
